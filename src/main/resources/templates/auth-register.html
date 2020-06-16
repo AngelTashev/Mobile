@@ -106,8 +106,7 @@
                 <label class="text-center text-white font-weight-bold" for="roles">Engine</label>
                 <select th:field="*{roles}" id="roles" class="form-control" multiple >
                     <option th:each="role: ${T(demo.workship.mobile.models.entities.enums.Role).values()}"
-                            th:value="${role}" th:text="${role}"
-                            th:selected="${#sets.contains(user.roles, role)}">
+                            th:value="${role}" th:text="${role}">
                         User roles
                     </option>
                 </select>

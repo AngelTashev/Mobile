@@ -12,7 +12,7 @@ public class UserRegisterBindingModel {
     private String lastName;
     private String username;
     private String password;
-    private Set<UserRolesRegisterBindingModel> roles;
+    private String[] roles;
 
     public UserRegisterBindingModel() {
     }
@@ -58,11 +58,11 @@ public class UserRegisterBindingModel {
     }
 
     @NotNull
-    public Set<UserRolesRegisterBindingModel> getRoles() {
+    public String[] getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRolesRegisterBindingModel> roles) {
+    public void setRoles(String[] roles) {
         this.roles = roles;
     }
 }
