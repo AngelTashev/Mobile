@@ -1,13 +1,13 @@
 package demo.workship.mobile.models.entities;
 
-import demo.workship.mobile.models.entities.BaseEntity;
-import demo.workship.mobile.models.entities.enums.Role;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -29,7 +29,8 @@ public class User extends BaseEntity {
     }
 
     @NotNull
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique = true)
+    @Length(min = 5, max = 20, message = "Username must be between 5 and 20 characters")
     public String getUsername() {
         return username;
     }
@@ -40,6 +41,7 @@ public class User extends BaseEntity {
 
     @NotNull
     @Column(name = "password", nullable = false)
+    @Length(min = 8, max = 30, message = "Password must be between 8 and 30 characters")
     public String getPassword() {
         return password;
     }
@@ -48,7 +50,9 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    @Column(name = "first_name")
+    @NotNull
+    @Length(min = 3, max = 20, message = "First name must be between 3 and 20 characters")
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -57,7 +61,9 @@ public class User extends BaseEntity {
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name")
+    @NotNull
+    @Column(name = "last_name", nullable = false)
+    @Length(min = 3, max = 20, message = "Last name must be between 3 and 20 characters")
     public String getLastName() {
         return lastName;
     }
@@ -94,6 +100,7 @@ public class User extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
+    @PastOrPresent
     @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
@@ -103,6 +110,7 @@ public class User extends BaseEntity {
         this.created = created;
     }
 
+    @PastOrPresent
     @Column(name = "modified")
     public LocalDateTime getModified() {
         return modified;
